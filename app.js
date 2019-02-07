@@ -4,6 +4,8 @@ const app = express();
 
 // Load Keys for mongoose
 const keys = require("./config/keys");
+// Load Routes
+const authRoutes = require("./routes/auth");
 
 mongoose
   .connect(keys.mongoURI, { useNewUrlParser: true })
@@ -13,6 +15,9 @@ mongoose
 app.get("/", (req, res) => {
   res.send("OK");
 });
+
+// auth Route
+app.use("/auth", authRoutes);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
