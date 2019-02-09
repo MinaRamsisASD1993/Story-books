@@ -20,5 +20,18 @@ router.get(
     res.redirect("/dashboard");
   }
 );
+// '/auth/logout' Route
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
+router.get("/verify", (req, res) => {
+  if (req.user) {
+    console.log(req.user);
+  } else {
+    console.log("NOT AUTH");
+  }
+});
 
 module.exports = router;

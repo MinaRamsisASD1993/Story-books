@@ -1,0 +1,28 @@
+<h2>Public Stories</h2>
+<div class="row">
+
+    {{#each stories}}
+    <div class="col s12 m4">
+        <div class="card center-align">
+
+            {{#compare this.userID._id ../user.id this._id}}
+            {{/compare}}
+            <div class="card-content">
+                <span class="card-title">{{this.title}}</span>
+                <p id="parDetails">{{truncateString (stripTags this.details)}}</p>
+                <br>
+                <div class="chip">
+                    <img src="{{this.userID.photo}}">
+                    <a href="/stories/users/{{this.userID._id}}">{{this.userID.firstName}} {{this.userID.lastName}}</a>
+                </div>
+            </div>
+            <div class="card-action">
+                <a href="/stories/show/{{this._id}}" class="btn grey darken-2">Read More</a>
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <p>No Public Stories Found!!! </p>
+    {{/each}}
+
+</div>

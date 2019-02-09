@@ -1,0 +1,47 @@
+<nav class="grey darken-3">
+    <div class="container">
+        <div class="nav-wrapper">
+            {{#if user}}
+            <a href="/dashboard" class="brand-logo center">StoryBooks</a>
+            {{else}}
+            <a href="/" class="brand-logo center">StoryBooks</a>
+            {{/if}}
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger show-on-large"><i class="fa fa-bars"></i></a>
+            <!-- RIGHT NAV -->
+            <ul class="right hide-on-small-only">
+                {{#if user}}
+                <li><a href="/dashboard">Welcome <strong>{{user.firstName}}</strong></a></li>
+                <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                {{else}}
+                <li><a href="/stories"><i class="fa fa-book"></i> Public Stories</a></li>
+                {{/if}}
+            </ul>
+        </div>
+    </div>
+
+</nav>
+<ul class="sidenav" id="mobile-demo">
+    {{#if user}}
+    <li>
+        <a href="/stories"><i class="fa fa-book"></i> Public Stories</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a href="/dashboard"><i class="fa fa-cog"></i> Dashboard</a>
+    </li>
+    <li>
+        <a href="/stories/my"><i class="fa fa-user"></i> My Stories</a>
+    </li>
+    <li><a href="/auth/logout"><i class="fa fa-sign-out" style="font-size:20px"></i> Logout</a></li>
+    {{else}}
+    <li>
+        <a href="/auth/google" class="btn red darken-3 waves-effect waves-light"><i class="fa fa-google"
+                style="font-size:20px; color: #fff;"></i>
+            Login With
+            Google</a>
+    </li>
+    <li>
+        <a href="/stories"><i class="fa fa-book"></i> Public Stories</a>
+    </li>
+    {{/if}}
+</ul>

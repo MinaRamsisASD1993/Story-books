@@ -1,0 +1,60 @@
+<div class="row">
+
+    <div class="col m8 s12">
+        <h2>{{story.title}}</h2>
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{formatDate story.date}}</span>
+                <p>{{{story.details}}}</p>
+            </div>
+        </div>
+
+        {{#each story.comments}}
+        <h5>Comments</h5>
+        <div class="card">
+            <div class="card-content">
+                <p>{{this.commentBody}}</p>
+                <br>
+                <div class="chip">
+                    <img src="{{this.commentUserID.photo}}">
+                    <a href="/stories/users/{{this.commentUserID._id}}">{{this.commentUserID.firstName}}
+                        {{this.commentUserID.lastName}}</a>
+                </div><br>
+                <small>Posted: {{formatDate this.commentDate}}</small>
+            </div>
+        </div>
+        {{/each}}
+        {{#if story.allowComments}}
+        <div class="card">
+            <div class="card-content">
+                {{#if user}}
+                <form action="/stories/comments/{{story._id}}" method="POST">
+                    <div class="input-field">
+                        <textarea name="comment" id="comment" class="materialize-textarea" required></textarea>
+                        <label for="comment">Comment</label>
+                    </div>
+                    <input type="submit" value="Add Comment" class="btn">
+                </form>
+                {{else}}
+                <p>Please <a href="/auth/google">Login</a> to add a new Comment</p>
+                {{/if}}
+            </div>
+        </div>
+
+        {{/if}}
+    </div>
+
+    <div class="col m4 s12">
+        <div class="card center-align">
+            <div class="card-content">
+                <span class="card-title">{{story.userID.firstName}} {{story.userID.lastName}}</span>
+                <img src="{{story.userID.photo}}" class="circle responsive-img">
+            </div>
+            <div class="card-action">
+                <a href="/stories/users/{{story.userID._id}}">Read More From {{story.userID.firstName}}</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
